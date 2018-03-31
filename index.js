@@ -15,6 +15,7 @@ app.use(bodyParser.json());
 app.use('/api', router);
 
 app.use((err, req,res,next) => {
+
   if (err.name === 'ValidationError') res.status(422).json({ message: err.message });
   res.status(500).json({ message: 'Internal Server Error '});
   next();
