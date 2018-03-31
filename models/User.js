@@ -4,7 +4,8 @@ const bcrypt = require('bcrypt');
 const userSchema = new mongoose.Schema({
   username: { type: String, minLength: 2, uniqueCaseInsensitive: true, required: true },
   email: { type: String, uniqueCaseInsensitive: true, required: true },
-  password: { type: String, required: true }
+  password: { type: String, required: true },
+  admin: { type: Boolean, default: false }
 });
 
 userSchema.pre('validate', function checkPasswordMatch(next) {
