@@ -8,6 +8,11 @@ const userSchema = new mongoose.Schema({
   admin: { type: Boolean, default: false }
 });
 
+userSchema.virtual('passwordConfirmation')
+  .set(function setPasswordConfirmation(passwordConfirmation) {
+    this._passwordConfirmation = passwordConfirmation;
+  });
+
 userSchema.pre('validate', function checkPasswordMatch(next) {
   if(this.isModified('password') && this._passwordConfirmation !== this.password) {
     this.invalidate('passwordConfirmation', 'passwords do not match');
@@ -25,5 +30,6 @@ userSchema.pre('save', function hashPassword(next) {
 userSchema.methods.validatePassword = function validatePassword(password) {
   return bcrypt.compareSync(password, this.password);
 };
+
 
 module.exports = mongoose.model('User', userSchema);
