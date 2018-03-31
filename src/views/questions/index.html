@@ -1,0 +1,18 @@
+<ul class="columns is-multiline">
+
+  <li class="column is-one-quarter" ng-repeat="question in questionsIndex.voteQuestions">
+    <!-- <a ui-sref="questionsShow({ id: question._id })"> -->
+      <div class="card">
+        <!-- <div class="card-image">
+          <figure class="image">
+            <img ng-src="{{ question.image }}" alt="{{ question.question }}" />
+          </figure>
+        </div> -->
+        <div class="card-content">
+          <h4>{{ question.question }}</h4>
+        </div>
+      </div>
+    <!-- </a> -->
+  </li>
+
+</ul>

@@ -1,10 +1,14 @@
-// 3rd party dependencies
 import angular from 'angular';
 import '@uirouter/angularjs';
 
-// 3rd party extras
-import 'bulma';
-import './assets/scss/style.scss';
+import Router from './config/router';
+import QuestionsIndexCtrl from './controllers/index';
 
-// Questions Controllers
-import QuestionsIndexCtrl from './controllers/quetsions/index';
+import Question from './services/question';
+
+import 'bulma';
+
+angular.module('awardsSite', ['ui.router'])
+  .config(Router)
+  .controller('QuestionsIndexCtrl', QuestionsIndexCtrl)
+  .service('Question', Question);
