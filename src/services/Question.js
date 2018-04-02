@@ -5,7 +5,13 @@ function Question($http) {
     return $http.get('/api/questions');
   }
 
+  function findById(id) {
+    return $http.get(`/api/questions/${id}`);
+  }
+
   this.find = find;
+  this.findById = findById;
+
 }
 
 export default Question;
