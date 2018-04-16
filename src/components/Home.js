@@ -2,18 +2,25 @@ import React from 'react';
 import axios from 'axios';
 
 class Home extends React.Component {
-  state = {};
+  state = {
+    question: '',
+    submitted: false
+  };
 
   handleChange = (e) => {
-    this.setState({ question: e.target.value }, () => console.log(this.state));
+    this.setState({ question: e.target.value });
   }
 
   handleSubmit = (e) => {
     e.preventDefault();
 
     axios.post('/api/questions', this.state)
-      .then(res => console.log(res));
+      .then(() => {
+        this.setState({ question: '', submitted: true });
+        setTimeout(() => this.setState({ submitted: false }), 3000);
+      });
   }
+
 
   render(){
     return(
@@ -35,8 +42,9 @@ class Home extends React.Component {
         </p>
         <form onSubmit={this.handleSubmit}>
           <div className="field">
-            <input className="input" onChange={this.handleChange} type="text" />
+            <input className="input" value={this.state.question} onChange={this.handleChange} type="text" />
             <button className="button">Submit Question</button>
+            {this.state.submitted && <p> Thanks for your submission!</p>}
           </div>
         </form>
       </section>
