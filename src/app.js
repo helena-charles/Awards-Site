@@ -1,14 +1,15 @@
-import angular from 'angular';
-import '@uirouter/angularjs';
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-import Router from './config/router';
-import QuestionsIndexCtrl from './controllers/index';
+class App extends React.Component {
+  render() {
+    return (
+      <h1>WDI32 Project 4</h1>
+    );
+  }
+}
 
-import Question from './services/question';
-
-import 'bulma';
-
-angular.module('awardsSite', ['ui.router'])
-  .config(Router)
-  .controller('QuestionsIndexCtrl', QuestionsIndexCtrl)
-  .service('Question', Question);
+ReactDOM.render(
+  <App />,
+  document.getElementById('root')
+);

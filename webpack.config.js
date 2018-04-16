@@ -5,13 +5,12 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpack = new HtmlWebpackPlugin({
   template: 'src/index.html',
   filename: 'index.html',
-  inject: 'head'
+  inject: 'body'
 });
 
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const CopyWebpack = new CopyWebpackPlugin([
-  { from: './src/assets', to: 'assets' },
-  { from: './src/views', to: 'views' }
+  { from: './src/assets', to: 'assets' }
 ]);
 
 const HotModuleReplcement = new webpack.HotModuleReplacementPlugin();
