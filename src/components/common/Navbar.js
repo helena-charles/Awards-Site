@@ -25,7 +25,7 @@ class Navbar extends React.Component {
   }
 
   componentDidMount() {
-    if (User.getUser()) User.getUser().username.charAt(0).toUpperCase() + User.getUser().username.slice(1);
+    if (User.getUser()) this.setState({ username: User.getUser().username.charAt(0).toUpperCase() + User.getUser().username.slice(1) });
   }
 
   render() {
