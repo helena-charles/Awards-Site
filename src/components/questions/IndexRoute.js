@@ -9,7 +9,7 @@ class IndexRoute extends React.Component {
 
   componentDidMount() {
     axios.get('/api/questions')
-      .then(res => this.setState({ questions: res.data }));
+      .then(res => this.setState({ questions: res.data }), console.log('hel', this.state));
   }
 
   handleVote = (e) => {

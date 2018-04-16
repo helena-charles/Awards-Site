@@ -11,8 +11,11 @@ router.route('/questions/:id')
   .put(questions.update)
   .delete(questions.delete);
 
-router.post('/login', auth.login);
-router.post('/register', auth.register);
+router.route('/register')
+  .post(auth.register);
+
+router.route('/login')
+  .post(auth.login);
 
 router.route('/*')
   .all((req, res) => res.status(404).json({ message: 'Not found' }));

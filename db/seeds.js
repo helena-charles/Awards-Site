@@ -13,6 +13,9 @@ mongoose.connect(dbURI, (err, db) => {
   },{
     question: 'Most likely to get married',
     moderated: false
+  },{
+    question: 'Most likely to quit it all and do something else',
+    moderated: true
   }])
     .then(questions => console.log(`${questions.length} questions created`))
     .catch(err => console.log(err))
