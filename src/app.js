@@ -4,8 +4,12 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import Home from './components/Home';
 import IndexRoute from './components/questions/IndexRoute';
+import Admin from './components/questions/Admin';
+import Navbar from './components/common/Navbar';
 
-import 'bulma';
+import Register from './components/auth/Register';
+import Login from './components/auth/Login';
+
 
 import 'bulma';
 
@@ -14,10 +18,16 @@ class App extends React.Component {
     return (
       <BrowserRouter>
         <main className="container">
-          <Switch>
-            <Route path="/questions" component={IndexRoute} />
-            <Route path="/" component={Home} />
-          </Switch>
+          <Navbar />
+          <section>
+            <Switch>
+              <Route path="/questions/admin" component={Admin} />
+              <Route path="/questions" component={IndexRoute} />
+              <Route path="/register" component={Register} />
+              <Route path="/login" component={Login} />
+              <Route path="/" component={Home} />
+            </Switch>
+          </section>
         </main>
       </BrowserRouter>
     );
