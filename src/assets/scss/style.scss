@@ -1,3 +1,89 @@
+@import url('https://fonts.googleapis.com/css?family=Anton');
+
 body {
-  background-color: red;
+  margin: 0;
+}
+
+.homepage-background {
+  background-image: url("../images/glitter.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: -1;
+}
+
+.homepage-wrapper {
+  width: 60%;
+  margin: 0 auto;
+
+}
+
+h1 {
+  font-family: 'Anton', sans-serif;
+  color: white;
+  text-transform: uppercase;
+  font-size:20px!important;
+  text-align: center;
+  padding-top: 20px!important;
+}
+
+.logo {
+  display: block;
+  margin: 0 auto;
+}
+
+p {
+  color: white;
+
+}
+
+.navbar {
+  background-color: transparent!important;
+  margin: 0!important;
+}
+
+.navbar a {
+  color: white;
+  font-family: 'Anton', sans-serif;
+}
+
+.award {
+  width: 120px;
+  height: 120px;
+  display: block;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.homepage-copy {
+  text-align: center;
+  color: white;
+  font-family: 'Anton', sans-serif;
+  padding: 10px;
+}
+
+input {
+  background-color: rgba(255,255,255,0.2);
+  border: 0px;
+  height: 40px;
+  width: 100%;
+  padding: 0;
+}
+
+::placeholder {
+  color: white;
+  text-align: center;
+}
+
+button {
+  background-color: #D49B65;
+  border: 0;
+  text-align: center;
+  padding: 10px 15px;
+  margin: 10px auto!important;
+  display: block;
 }

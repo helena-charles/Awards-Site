@@ -33,7 +33,7 @@ class Navbar extends React.Component {
       <nav className="navbar">
         <div className="navbar-brand">
           <Link className="navbar-item" to="/">
-            GAys
+            <img src="../assets/images/ga-logo_gas.png" />
           </Link>
           <div
             className={`navbar-burger
