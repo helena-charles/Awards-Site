@@ -10,6 +10,8 @@ import Navbar from './components/common/Navbar';
 import Register from './components/auth/Register';
 import Login from './components/auth/Login';
 
+import './assets/scss/style.scss';
+
 
 import 'bulma';
 
