@@ -56,6 +56,12 @@ class IndexRoute extends React.Component {
     const unmoderated = this.state.questions.filter(question => !question.moderated);
     return (
       <section>
+
+        <div className="background">
+        </div>
+        <h1>GA Awards</h1>
+        <p className="subtext">Submit your nominees below</p>
+
         <ul className="columns is-multiline">
           {moderated.map((question, i) =>
             <li key={i} className="column is-one-third">
