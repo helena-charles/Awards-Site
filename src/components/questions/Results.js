@@ -40,6 +40,8 @@ class Results extends React.Component {
     };
     return (
       <section>
+        <h1 className="title">And the winner is...</h1>
+
         <ul className="columns is-multiline">
           {this.state.questions.map((question, i) =>
             <li key={i} className="column is-one-third">
