@@ -46,6 +46,12 @@ class IndexRoute extends React.Component {
     axios.delete(`/api/questions/${question._id}`);
   }
 
+  handleCloseVote = () => {
+    const questionsClosed = this.state.questions.map(question => question.votingOpen = false)
+    this.setState({ questions: questionsClosed });
+    console.log(this.state.questions);
+  }
+
 
   render() {
 
@@ -67,7 +73,11 @@ class IndexRoute extends React.Component {
                         <option value="Jess">Jess</option>
                         <option value="Abi">Abi</option>
                       </select>
-                      <button>Submit</button>
+                      {this.state.questions.map(question => question.votingOpen === true) ?
+                        <button>Submit</button>
+                        :
+                        <p>Voting is now closed.</p>
+                      }
                     </form>
                     }
                   </div>
@@ -96,6 +106,7 @@ class IndexRoute extends React.Component {
               </li>
             )}
           </ul>
+          <button onClick={this.handleCloseVote}>Close voting</button>
         </div>
         }
       </section>
