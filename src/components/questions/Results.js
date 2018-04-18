@@ -49,7 +49,7 @@ class Results extends React.Component {
                 <div className="card">
                   <div className="card-content">
                     <h1 className="title is-4">Title: {question.question}</h1>
-                    <h1 className="title is-4">Winner: {question.votes[1]}</h1>
+                    <h1 className="title is-4">Winner: {question.votes[0]}</h1>
                     <img src={members[question.votes[0]]} />
                   </div>
                 </div>
