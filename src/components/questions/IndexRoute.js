@@ -12,18 +12,23 @@ class IndexRoute extends React.Component {
     votes: {}
   }
 
-  componentDidMount() {
+  getQuestions = () => {
     axios.get('/api/questions')
       .then(res => this.setState({ questions: res.data }));
+  }
 
-    if (User.getUser()) this.setState({ admin: User.getUser().admin });
+  componentDidMount() {
+    this.getQuestions();
+
+    if (Auth.getPayload()) this.setState({ loggedIn: true, admin: User.getUser().admin }, () => console.log(this.state));
+    else this.setState({ loggedIn: false });
   }
 
   handleVote = (e) => {
     const { name, value } = e.target;
     const updatedVotes = {...this.state.votes};
     updatedVotes[name] = value;
-    this.setState({ votes: updatedVotes }, () => console.log(this.state.votes));
+    this.setState({ votes: updatedVotes });
   }
 
   handleSubmit = (e) => {
@@ -33,22 +38,22 @@ class IndexRoute extends React.Component {
       axios.post(`/api/questions/${question}/votes`, this.state, {
         headers: { Authorization: `Bearer ${Auth.getToken()}`}
       })
-        .then(res => console.log(res));
+        .then(() => this.getQuestions());
     });
   }
 
   handleApprove = (question) => {
     axios.put(`/api/questions/${question._id}`, {...question, moderated: true})
-      .then(res => console.log(res));
+      .then(() => this.getQuestions());
   }
 
   handleReject = (question) => {
-    axios.delete(`/api/questions/${question._id}`);
+    axios.delete(`/api/questions/${question._id}`)
+      .then(() => this.getQuestions());
   }
 
 
   render() {
-
     const moderated = this.state.questions.filter(question => question.moderated);
     const unmoderated = this.state.questions.filter(question => !question.moderated);
     return (
@@ -66,8 +71,9 @@ class IndexRoute extends React.Component {
                 <div className="card">
                   <div className="card-content">
                     <h1 className="title is-4">{question.question}</h1>
-                    <form onSubmit={this.handleSubmit}>
+                    {this.state.loggedIn && !question.alreadyVoted.includes(Auth.getPayload().sub) && <form onSubmit={this.handleSubmit}>
                       <select name={question._id} onChange={this.handleVote}>
+                        <option value=""></option>
                         <option value="Helena">Helena</option>
                         <option value="Katie">Katie</option>
                         <option value="Jess">Jess</option>
@@ -75,13 +81,15 @@ class IndexRoute extends React.Component {
                       </select>
                       <button>Submit</button>
                     </form>
+                    }
+                    {question.alreadyVoted.includes(Auth.getPayload().sub) && <p>Thanks for voting!</p> }
                   </div>
                 </div>
               </div>
             </li>
           )}
         </ul>
-        {this.state.admin &&
+        {this.state.admin && this.state.loggedIn &&
         <div>
           <h2>unmoderated</h2>
           <ul className="columns is-multiline">

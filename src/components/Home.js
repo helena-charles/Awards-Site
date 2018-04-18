@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import Auth from '../lib/Auth';
 
 class Home extends React.Component {
   state = {
@@ -19,6 +20,10 @@ class Home extends React.Component {
         this.setState({ question: '', submitted: true });
         setTimeout(() => this.setState({ submitted: false }), 3000);
       });
+  }
+
+  handleLogin = () => {
+    this.props.history.push('/login');
   }
 
 
@@ -50,18 +55,24 @@ class Home extends React.Component {
             Have at it and don&apos;t be dicks!
             </p>
           </div>
-          <form onSubmit={this.handleSubmit}>
-            <div className="field">
-              <input value={this.state.question} onChange={this.handleChange} type="text" placeholder="Enter your quesiton here..." />
+          {Auth.isAuthenticated() ?
+            <form onSubmit={this.handleSubmit}>
+              <div className="field">
+                <input value={this.state.question} onChange={this.handleChange} type="text" placeholder="Enter your quesiton here..." />
 
-              {this.state.submitted ?
-                <button className="submittedconfirmation"> Thanks!</button>
-                :
-                <button> Submit Question</button>
-              }
+                {this.state.submitted ?
+                  <button className="submittedconfirmation"> Thanks!</button>
+                  :
+                  <button> Submit Question</button>
+                }
 
-            </div>
-          </form>
+
+              </div>
+            </form>
+            :
+            <button onClick={this.handleLogin}>Login to Submit Your Questions</button>
+          }
+
         </div>
       </section>
     );
