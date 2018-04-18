@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Anton');
+@import url('https://fonts.googleapis.com/css?family=Anton|Montserrat');
 
 body {
   margin: 0;
@@ -29,6 +29,7 @@ h1 {
   font-size:20px!important;
   text-align: center;
   padding-top: 20px!important;
+  letter-spacing: 2px;
 }
 
 .logo {
@@ -36,10 +37,7 @@ h1 {
   margin: 0 auto;
 }
 
-p {
-  color: white;
 
-}
 
 .navbar {
   background-color: transparent!important;
@@ -51,9 +49,13 @@ p {
   font-family: 'Anton', sans-serif;
 }
 
+.navbar-menu {
+  background-color: transparent!important;
+}
+
 .award {
-  width: 120px;
-  height: 120px;
+  width: 155px;
+  height: 155px;
   display: block;
   margin: 0 auto;
   padding: 20px;
@@ -62,7 +64,7 @@ p {
 .homepage-copy {
   text-align: center;
   color: white;
-  font-family: 'Anton', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   padding: 10px;
 }
 
@@ -77,6 +79,7 @@ input {
 ::placeholder {
   color: white;
   text-align: center;
+  font-family: 'Montserrat', sans-serif;
 }
 
 button {
@@ -86,4 +89,32 @@ button {
   padding: 10px 15px;
   margin: 10px auto!important;
   display: block;
+}
+
+.prounced {
+  font-size: 10px;
+  color: white;
+  text-align: center;
+  padding: 5px;
+
+}
+
+input, select, textarea{
+    color: white;
+    text-align: center;
+}
+
+.examples {
+  font-style: italic;
+}
+
+.lastp {
+  padding-top: 20px!important;
+}
+
+.submittedconfirmation {
+  color: white;
+  text-align: center;
+  width: 87px;
+  padding: 10px 25px;
 }
