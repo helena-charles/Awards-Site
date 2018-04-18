@@ -40,6 +40,8 @@ class Results extends React.Component {
     };
     return (
       <section>
+        <h1 className="title">And the winner is...</h1>
+
         <ul className="columns is-multiline">
           {this.state.questions.map((question, i) =>
             <li key={i} className="column is-one-third">
@@ -47,7 +49,7 @@ class Results extends React.Component {
                 <div className="card">
                   <div className="card-content">
                     <h1 className="title is-4">Title: {question.question}</h1>
-                    <h1 className="title is-4">Winner: {question.votes[1]}</h1>
+                    <h1 className="title is-4">Winner: {question.votes[0]}</h1>
                     <img src={members[question.votes[0]]} />
                   </div>
                 </div>
