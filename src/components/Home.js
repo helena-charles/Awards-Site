@@ -55,25 +55,24 @@ class Home extends React.Component {
             Have at it and don&apos;t be dicks!
             </p>
           </div>
-          {Auth.isAuthenticated() &&
-          <form onSubmit={this.handleSubmit}>
-            <div className="field">
-              <input value={this.state.question} onChange={this.handleChange} type="text" placeholder="Enter your quesiton here..." />
+          {Auth.isAuthenticated() ?
+            <form onSubmit={this.handleSubmit}>
+              <div className="field">
+                <input value={this.state.question} onChange={this.handleChange} type="text" placeholder="Enter your quesiton here..." />
 
-              {this.state.submitted ?
-                <button className="submittedconfirmation"> Thanks!</button>
-                :
-                <button> Submit Question</button>
-              }
+                {this.state.submitted ?
+                  <button className="submittedconfirmation"> Thanks!</button>
+                  :
+                  <button> Submit Question</button>
+                }
 
 
-            </div>
-          </form>
-            ?
-            <button onClick={this.handleLogin}>Login to Submit Your Questions</button>
+              </div>
+            </form>
             :
-            <span></span>
+            <button onClick={this.handleLogin}>Login to Submit Your Questions</button>
           }
+
         </div>
       </section>
     );
