@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import User from '../../lib/User';
+import Auth from '../../lib/Auth';
 
 
 class IndexRoute extends React.Component {
@@ -8,16 +9,31 @@ class IndexRoute extends React.Component {
   state = {
     questions: [],
     moderated: true,
-    admin: User.getUser().admin
+    admin: User.getUser().admin,
+    votes: {}
   }
 
   componentDidMount() {
     axios.get('/api/questions')
-      .then(res => this.setState({ questions: res.data }), console.log('hel', this.state));
+      .then(res => this.setState({ questions: res.data }));
   }
 
   handleVote = (e) => {
-    console.log(e.target.value);
+    const { name, value } = e.target;
+    const updatedVotes = {...this.state.votes};
+    updatedVotes[name] = value;
+    this.setState({ votes: updatedVotes }, () => console.log(this.state.votes));
+  }
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+
+    Object.keys(this.state.votes).forEach(question => {
+      axios.post(`/api/questions/${question}/votes`, this.state, {
+        headers: { Authorization: `Bearer ${Auth.getToken()}`}
+      })
+        .then(res => console.log(res));
+    });
   }
 
   handleApprove = (question) => {
@@ -42,16 +58,16 @@ class IndexRoute extends React.Component {
                 <div className="card">
                   <div className="card-content">
                     <h1 className="title is-4">{question.question}</h1>
+                    <form onSubmit={this.handleSubmit}>
+                      <select name={question._id} onChange={this.handleVote}>
+                        <option value="Helena">Helena</option>
+                        <option value="Katie">Katie</option>
+                        <option value="Jess">Jess</option>
+                        <option value="Abi">Abi</option>
+                      </select>
+                      <button>Submit</button>
+                    </form>
                   </div>
-                </div>
-                <div>
-                  <select onChange={this.handleVote}>
-                    <option value="Helena">Helena</option>
-                    <option value="Katie">Katie</option>
-                    <option value="Jess">Jess</option>
-                    <option value="Abi">Abi</option>
-                  </select>
-                  <button>Vote</button>
                 </div>
               </div>
             </li>
