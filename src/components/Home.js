@@ -31,7 +31,7 @@ class Home extends React.Component {
     return(
       <section>
 
-        <div className="homepage-background">
+        <div className="background">
         </div>
 
         <div className="homepage-wrapper">
