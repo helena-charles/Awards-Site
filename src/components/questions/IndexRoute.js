@@ -20,46 +20,65 @@ class IndexRoute extends React.Component {
     console.log(e.target.value);
   }
 
-  toggleMod = () => {
-    this.setState({ moderated: !this.state.moderated});
-    console.log(this.state);
+  handleApprove = (question) => {
+    axios.put(`/api/questions/${question._id}`, {...question, moderated: true})
+      .then(res => console.log(res));
   }
+
+  handleReject = (question) => {
+    axios.delete(`/api/questions/${question._id}`);
+  }
+
+
   render() {
+    const moderated = this.state.questions.filter(question => question.moderated);
+    const unmoderated = this.state.questions.filter(question => !question.moderated);
     return (
       <section>
         <ul className="columns is-multiline">
-          {this.state.questions.map((question, i) =>
+          {moderated.map((question, i) =>
             <li key={i} className="column is-one-third">
-              {question.moderated &&
+              <div>
+                <div className="card">
+                  <div className="card-content">
+                    <h1 className="title is-4">{question.question}</h1>
+                  </div>
+                </div>
+                <div>
+                  <select onChange={this.handleVote}>
+                    <option value="Helena">Helena</option>
+                    <option value="Katie">Katie</option>
+                    <option value="Jess">Jess</option>
+                    <option value="Abi">Abi</option>
+                  </select>
+                  <button>Vote</button>
+                </div>
+              </div>
+            </li>
+          )}
+        </ul>
+        {this.state.admin &&
+        <div>
+          <h2>unmoderated</h2>
+          <ul className="columns is-multiline">
+            {unmoderated.map((question, i) =>
+              <li key={i} className="column is-one-third">
                 <div>
                   <div className="card">
                     <div className="card-content">
                       <h1 className="title is-4">{question.question}</h1>
-
-                      {/* {this.state.admin && */}
-                      { this.state.moderated ? (
-                        <button onClick={this.toggleMod}>Approve</button>
-                      ) : (
-                        <button onClick={this.toggleMod}>Reject</button>
-                      )
-                      }
-                      {/* } */}
+                      <section>
+                        <button onClick={() => this.handleApprove(question)}>Approve</button>
+                        <button onClick={() => this.handleReject(question)}>Reject</button>
+                      </section>
                     </div>
                   </div>
-                  <div>
-                    <select onChange={this.handleVote}>
-                      <option value="Helena">Helena</option>
-                      <option value="Katie">Katie</option>
-                      <option value="Jess">Jess</option>
-                      <option value="Abi">Abi</option>
-                    </select>
-                    <button>Vote</button>
-                  </div>
                 </div>
-              }
-            </li>
-          )}
-        </ul>
+              </li>
+            )}
+          </ul>
+        </div>
+        }
       </section>
     );
   }
