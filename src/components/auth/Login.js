@@ -26,10 +26,12 @@ class Login extends React.Component {
   render() {
     return (
       <section className="login">
-        <h1 className="login-title"></h1>
+        <div className="background">
+        </div>
+        <h1>Login</h1>
         <form className="form" onSubmit={this.handleSubmit}>
           <div className="field">
-            <label htmlFor="email">Email</label>
+
             <input className="input login-input"
               placeholder="Email"
               name="email"
@@ -37,7 +39,6 @@ class Login extends React.Component {
             />
           </div>
           <div className="field">
-            <label htmlFor="password">Password</label>
             <input
               className="input login-input"
               placeholder="Password"
@@ -46,7 +47,7 @@ class Login extends React.Component {
               onChange={this.handleChange}
             />
           </div>
-          <button className="button is-primary">Submit</button>
+          <button className="login-button">Login</button>
         </form>
       </section>
     );
