@@ -20,13 +20,12 @@ class Results extends React.Component {
   }
 
 
-  handleWin = (array) => {
-    console.log(this.state);
+  handleWin = (question) => {
     const counts = {};
     let mostFrequent = '';
-    for (let i = 0, length = array.length; i < length; i++){
-      for (let j = 0, length = array[i].length; j < length; j++){
-        const name = array[j];
+    for (let i = 0, length = question.votes.length; i < length; i++){
+      for (let j = 0, length = question.votes[i].length; j < length; j++){
+        const name = question.votes[j];
         if(!counts[name]){
           counts[name] = 1;    //set count[name] value to 1
         } else{                  //if exists
@@ -35,8 +34,15 @@ class Results extends React.Component {
         mostFrequent = Object.keys(counts).reduce((a, b) => counts[a] > counts[b] ? a : b);
       }
     }
-    this.setState({ winner: mostFrequent });
+    axios.post(`/api/questions/${question._id}/winner`, { winner: mostFrequent })
+      .then(() => {
+        axios.get('/api/questions')
+          .then(res => this.setState({ questions: res.data }, () => console.log(this.state)));
+      });
   }
+
+
+
 
   render() {
     const mates = {
@@ -68,9 +74,9 @@ class Results extends React.Component {
                 <div className="card">
                   <div className="card-content">
                     <h1 className="title is-4">Title: {question.question}</h1>
-                    <h1 className="title is-4">Winner: {this.state.winner}</h1>
+                    <h1 className="title is-4">Winner: </h1>
                     <img src={mates[question.votes[0]]} />
-                    <button onClick={() => this.handleWin(question.votes)}> {this.state.winner} </button>
+                    <button onClick={() => this.handleWin(question)}> {question.winner} </button>
                   </div>
                 </div>
               </div>
