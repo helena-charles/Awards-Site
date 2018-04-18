@@ -11,13 +11,30 @@ class Results extends React.Component {
 
   componentDidMount() {
     axios.get('/api/questions')
-      .then(res => this.setState({ questions: res.data }), console.log('hel', this.state));
+      .then(res => this.setState({ questions: res.data }));
   }
 
   handleQuestion = (e) => {
     console.log(e.target.value);
   }
 
+
+  handleWin = (array) => {
+    const counts = {};
+    let mostFrequent = '';
+    for (let i = 0, length = array.length; i < length; i++){
+      for (let j = 0, length = array[i].length; j < length; j++){
+        const name = array[j];
+        if(!counts[name]){
+          counts[name] = 1;    //set count[name] value to 1
+        } else{                  //if exists
+          counts[name] = counts[name] + 1; //increment existing value
+        }
+        mostFrequent = Object.keys(counts).reduce((a, b) => counts[a] > counts[b] ? a : b);
+      }
+    }
+    console.log(mostFrequent);
+  }
 
   render() {
     const mates = {
@@ -51,6 +68,7 @@ class Results extends React.Component {
                     <h1 className="title is-4">Title: {question.question}</h1>
                     <h1 className="title is-4">Winner: {question.votes[0]}</h1>
                     <img src={mates[question.votes[0]]} />
+                    <button onClick={() => this.handleWin(question.votes)}> hello </button>
                   </div>
                 </div>
               </div>
