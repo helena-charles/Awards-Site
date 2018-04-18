@@ -20,7 +20,7 @@ class Login extends React.Component {
         User.setUser(res.data.user);
       })
       .then(() => Flash.setMessage('success', 'Welcome!'))
-      .then(() => this.props.history.push('/questions'));
+      .then(() => this.props.history.push('/'));
   }
 
   render() {

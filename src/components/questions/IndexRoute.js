@@ -9,13 +9,14 @@ class IndexRoute extends React.Component {
   state = {
     questions: [],
     moderated: true,
-    admin: User.getUser().admin,
     votes: {}
   }
 
   componentDidMount() {
     axios.get('/api/questions')
       .then(res => this.setState({ questions: res.data }));
+
+    if (User.getUser()) this.setState({ admin: User.getUser().admin });
   }
 
   handleVote = (e) => {
