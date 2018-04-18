@@ -67,6 +67,7 @@ class IndexRoute extends React.Component {
                     <h1 className="title is-4">{question.question}</h1>
                     {this.state.loggedIn && !question.alreadyVoted.includes(Auth.getPayload().sub) && <form onSubmit={this.handleSubmit}>
                       <select name={question._id} onChange={this.handleVote}>
+                        <option value=""></option>
                         <option value="Helena">Helena</option>
                         <option value="Katie">Katie</option>
                         <option value="Jess">Jess</option>
