@@ -1,10 +1,14 @@
 import React from 'react';
 import axios from 'axios';
+import User from '../../lib/User';
+
 
 class IndexRoute extends React.Component {
 
   state = {
-    questions: []
+    questions: [],
+    moderated: true,
+    admin: User.getUser().admin
   }
 
   componentDidMount() {
@@ -16,6 +20,10 @@ class IndexRoute extends React.Component {
     console.log(e.target.value);
   }
 
+  toggleMod = () => {
+    this.setState({ moderated: !this.state.moderated});
+    console.log(this.state);
+  }
   render() {
     return (
       <section>
@@ -27,6 +35,15 @@ class IndexRoute extends React.Component {
                   <div className="card">
                     <div className="card-content">
                       <h1 className="title is-4">{question.question}</h1>
+
+                      {/* {this.state.admin && */}
+                      { this.state.moderated ? (
+                        <button onClick={this.toggleMod}>Approve</button>
+                      ) : (
+                        <button onClick={this.toggleMod}>Reject</button>
+                      )
+                      }
+                      {/* } */}
                     </div>
                   </div>
                   <div>
