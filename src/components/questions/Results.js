@@ -6,7 +6,8 @@ import axios from 'axios';
 class Results extends React.Component {
 
   state = {
-    questions: []
+    questions: [],
+    winner: ''
   }
 
   componentDidMount() {
@@ -20,6 +21,7 @@ class Results extends React.Component {
 
 
   handleWin = (array) => {
+    console.log(this.state);
     const counts = {};
     let mostFrequent = '';
     for (let i = 0, length = array.length; i < length; i++){
@@ -33,7 +35,7 @@ class Results extends React.Component {
         mostFrequent = Object.keys(counts).reduce((a, b) => counts[a] > counts[b] ? a : b);
       }
     }
-    console.log(mostFrequent);
+    this.setState({ winner: mostFrequent });
   }
 
   render() {
@@ -66,9 +68,9 @@ class Results extends React.Component {
                 <div className="card">
                   <div className="card-content">
                     <h1 className="title is-4">Title: {question.question}</h1>
-                    <h1 className="title is-4">Winner: {question.votes[0]}</h1>
+                    <h1 className="title is-4">Winner: {this.state.winner}</h1>
                     <img src={mates[question.votes[0]]} />
-                    <button onClick={() => this.handleWin(question.votes)}> hello </button>
+                    <button onClick={() => this.handleWin(question.votes)}> {this.state.winner} </button>
                   </div>
                 </div>
               </div>
