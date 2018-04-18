@@ -15,6 +15,9 @@ router.route('/questions/:id')
 router.route('/questions/:id/votes')
   .post(secureRoute, questions.createVote);
 
+router.route('/questions/:id/winner')
+  .post(questions.createWinner);
+
 router.route('/register')
   .post(auth.register);
 

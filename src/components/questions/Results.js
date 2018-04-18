@@ -6,17 +6,42 @@ import axios from 'axios';
 class Results extends React.Component {
 
   state = {
-    questions: []
+    questions: [],
+    winner: ''
   }
 
   componentDidMount() {
     axios.get('/api/questions')
-      .then(res => this.setState({ questions: res.data }), console.log('hel', this.state));
+      .then(res => this.setState({ questions: res.data }));
   }
 
   handleQuestion = (e) => {
     console.log(e.target.value);
   }
+
+
+  handleWin = (question) => {
+    const counts = {};
+    let mostFrequent = '';
+    for (let i = 0, length = question.votes.length; i < length; i++){
+      for (let j = 0, length = question.votes[i].length; j < length; j++){
+        const name = question.votes[j];
+        if(!counts[name]){
+          counts[name] = 1;    //set count[name] value to 1
+        } else{                  //if exists
+          counts[name] = counts[name] + 1; //increment existing value
+        }
+        mostFrequent = Object.keys(counts).reduce((a, b) => counts[a] > counts[b] ? a : b);
+      }
+    }
+    axios.post(`/api/questions/${question._id}/winner`, { winner: mostFrequent })
+      .then(() => {
+        axios.get('/api/questions')
+          .then(res => this.setState({ questions: res.data }, () => console.log(this.state)));
+      });
+  }
+
+
 
 
   render() {
@@ -49,8 +74,9 @@ class Results extends React.Component {
                 <div className="card">
                   <div className="card-content">
                     <h1 className="title is-4">Title: {question.question}</h1>
-                    <h1 className="title is-4">Winner: {question.votes[0]}</h1>
-                    <img src={mates[question.votes[0]]} />
+                    <h1 className="title is-4">Winner: </h1>
+                    <img src={mates[question.winner]} />
+                    <button onClick={() => this.handleWin(question)}> {question.winner} </button>
                   </div>
                 </div>
               </div>
