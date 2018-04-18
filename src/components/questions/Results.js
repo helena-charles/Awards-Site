@@ -20,7 +20,7 @@ class Results extends React.Component {
 
 
   render() {
-    const members = {
+    const mates = {
       'Reena': '/assets/images/Reena.jpg',
       'Tom': '/assets/images/Thomas.jpg',
       'George': '/assets/images/George.png',
@@ -50,7 +50,7 @@ class Results extends React.Component {
                   <div className="card-content">
                     <h1 className="title is-4">Title: {question.question}</h1>
                     <h1 className="title is-4">Winner: {question.votes[0]}</h1>
-                    <img src={members[question.votes[0]]} />
+                    <img src={mates[question.votes[0]]} />
                   </div>
                 </div>
               </div>
