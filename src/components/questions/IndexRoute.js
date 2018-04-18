@@ -66,7 +66,11 @@ class IndexRoute extends React.Component {
         <div className="background">
         </div>
         <h1>GA Awards</h1>
-        <p className="subtext">Submit your nominees below</p>
+        <p className="subtext">Submit your nominees below
+        <br />
+        All votes are anonymous, not even the admin can see who you voted for!
+        </p>
+
 
         <ul className="columns is-multiline">
           {moderated.map((question, i) =>
