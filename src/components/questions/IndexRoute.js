@@ -20,7 +20,7 @@ class IndexRoute extends React.Component {
   componentDidMount() {
     this.getQuestions();
 
-    if (Auth.getPayload()) this.setState({ loggedIn: true, admin: User.getUser().admin }, () => console.log(this.state));
+    if (Auth.getPayload()) this.setState({ loggedIn: true, admin: User.getUser().admin });
     else this.setState({ loggedIn: false });
   }
 
@@ -31,15 +31,13 @@ class IndexRoute extends React.Component {
     this.setState({ votes: updatedVotes });
   }
 
-  handleSubmit = (e) => {
+  handleSubmit = (e, question) => {
     e.preventDefault();
 
-    Object.keys(this.state.votes).forEach(question => {
-      axios.post(`/api/questions/${question}/votes`, this.state, {
-        headers: { Authorization: `Bearer ${Auth.getToken()}`}
-      })
-        .then(() => this.getQuestions());
-    });
+    axios.post(`/api/questions/${question._id}/votes`, this.state, {
+      headers: { Authorization: `Bearer ${Auth.getToken()}`}
+    })
+      .then(() => this.getQuestions());
   }
 
   handleApprove = (question) => {
@@ -71,7 +69,7 @@ class IndexRoute extends React.Component {
                 <div className="card">
                   <div className="card-content">
                     <h1 className="title is-4">{question.question}</h1>
-                    {this.state.loggedIn && !question.alreadyVoted.includes(Auth.getPayload().sub) && <form onSubmit={this.handleSubmit}>
+                    {this.state.loggedIn && !question.alreadyVoted.includes(Auth.getPayload().sub) && <form onSubmit={(e) => this.handleSubmit(e, question)}>
                       <select name={question._id} onChange={this.handleVote}>
                         <option value=""></option>
                         <option value="Helena">Helena</option>
