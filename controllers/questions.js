@@ -45,11 +45,22 @@ function createVote(req, res, next) {
     .catch(next);
 }
 
+function createWinner(req, res, next) {
+  Question.findById(req.params.id)
+    .then(question => {
+      question.winner = req.body.winner;
+      return question.save();
+    })
+    .then(question => res.json(question))
+    .catch(next);
+}
+
 module.exports = {
   index: indexRoute,
   create: createRoute,
   show: showRoute,
   update: updateRoute,
   delete: deleteRoute,
-  createVote: createVote
+  createVote: createVote,
+  createWinner: createWinner
 };

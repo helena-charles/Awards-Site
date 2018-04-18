@@ -19,47 +19,52 @@ class Register extends React.Component {
   }
   render() {
     return (
-      <form className="form" onSubmit={this.handleSubmit}>
-        <div className="field">
-          <label htmlFor="username">Username</label>
-          <input className="input"
-            placeholder="Username"
-            name="username"
-            onChange={this.handleChange}
-          />
-        </div>
-        <div className="field">
-          <label htmlFor="email">Email</label>
-          <input
-            className="input"
-            placeholder="Email"
-            name="email"
-            onChange={this.handleChange}
-          />
-        </div>
-        <div className="field">
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            className="input"
-            placeholder="Password"
-            name="password"
-            onChange={this.handleChange}
-          />
-        </div>
-        <div className="field">
-          <label htmlFor="passwordConfirmation">Password Confirmation</label>
-          <input
-            type="password"
-            className="input"
-            placeholder="Password Confirmation"
-            name="passwordConfirmation"
-            onChange={this.handleChange}
-          />
-        </div>
+      <section>
+        <div className="background"></div>
+        <h1>Register</h1>
+        <form className="form" onSubmit={this.handleSubmit}>
+          <div className="field">
 
-        <button className="button is-primary">Submit</button>
-      </form>
+            <input className="login-input"
+              placeholder="Username"
+              name="username"
+              onChange={this.handleChange}
+            />
+          </div>
+          <div className="field">
+
+            <input
+              className="login-input"
+              placeholder="Email"
+              name="email"
+              onChange={this.handleChange}
+            />
+          </div>
+          <div className="field">
+
+            <input
+              type="password"
+              className="login-input"
+              placeholder="Password"
+              name="password"
+              onChange={this.handleChange}
+            />
+          </div>
+          <div className="field">
+
+            <input
+              type="password"
+              className="login-input"
+              placeholder="Password Confirmation"
+              name="passwordConfirmation"
+              onChange={this.handleChange}
+            />
+          </div>
+
+          <button>Register</button>
+        </form>
+
+      </section>
     );
   }
 }
