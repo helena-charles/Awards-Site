@@ -60,7 +60,7 @@ class IndexRoute extends React.Component {
                 <div className="card">
                   <div className="card-content">
                     <h1 className="title is-4">{question.question}</h1>
-                    <form onSubmit={this.handleSubmit}>
+                    {User.getUser() && <form onSubmit={this.handleSubmit}>
                       <select name={question._id} onChange={this.handleVote}>
                         <option value="Helena">Helena</option>
                         <option value="Katie">Katie</option>
@@ -69,6 +69,7 @@ class IndexRoute extends React.Component {
                       </select>
                       <button>Submit</button>
                     </form>
+                    }
                   </div>
                 </div>
               </div>
