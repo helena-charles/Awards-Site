@@ -75,7 +75,7 @@ class Results extends React.Component {
                   <div className="card-content">
                     <h1 className="title is-4">Title: {question.question}</h1>
                     <h1 className="title is-4">Winner: </h1>
-                    <img src={mates[question.votes[0]]} />
+                    <img src={mates[question.winner]} />
                     <button onClick={() => this.handleWin(question)}> {question.winner} </button>
                   </div>
                 </div>
