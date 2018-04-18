@@ -33,10 +33,23 @@ function deleteRoute(req, res, next) {
     .catch(next);
 }
 
+function createVote(req, res, next) {
+  req.body.user = req.currentUser;
+  Question.findById(req.params.id)
+    .then(question => {
+      question.votes = question.votes.concat(req.body.votes[req.params.id]);
+      question.alreadyVoted = question.alreadyVoted.concat(req.body.user);
+      return question.save();
+    })
+    .then(question => res.json(question))
+    .catch(next);
+}
+
 module.exports = {
   index: indexRoute,
   create: createRoute,
   show: showRoute,
   update: updateRoute,
-  delete: deleteRoute
+  delete: deleteRoute,
+  createVote: createVote
 };

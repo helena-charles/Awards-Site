@@ -4,6 +4,8 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import Home from './components/Home';
 import IndexRoute from './components/questions/IndexRoute';
+import Results from './components/questions/Results';
+
 import Admin from './components/questions/Admin';
 import Navbar from './components/common/Navbar';
 
@@ -25,6 +27,8 @@ class App extends React.Component {
             <Switch>
               <Route path="/questions/admin" component={Admin} />
               <Route path="/questions" component={IndexRoute} />
+              <Route path="/results" component={Results} />
+
               <Route path="/register" component={Register} />
               <Route path="/login" component={Login} />
               <Route path="/" component={Home} />
