@@ -9,16 +9,20 @@ mongoose.connect(dbURI, (err, db) => {
 
   Question.create([{
     question: 'Most likely to lose all their money at the casino',
-    moderated: true
+    moderated: true,
+    votingOpen: true
   },{
     question: 'Best breakdancer',
-    moderated: true
+    moderated: true,
+    votingOpen: true
   },{
     question: 'Most likely to get married',
-    moderated: false
+    moderated: false,
+    votingOpen: true
   },{
     question: 'Most likely to quit it all and do something else',
-    moderated: true
+    moderated: true,
+    votingOpen: true
   }])
     .then(questions => console.log(`${questions.length} questions created`))
     .catch(err => console.log(err))
