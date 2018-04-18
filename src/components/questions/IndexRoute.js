@@ -51,9 +51,11 @@ class IndexRoute extends React.Component {
   }
 
   handleCloseVote = () => {
-    const questionsClosed = this.state.questions.map(question => question.votingOpen = false)
-    this.setState({ questions: questionsClosed });
+    this.state.questions.map(question => question.votingOpen = false);
     console.log(this.state.questions);
+    // this.setState({ questions: questionsClosed });
+    // console.log(this.state.questions);
+    const question = this.state.questions.map(question => question);
   }
 
 
@@ -87,11 +89,7 @@ class IndexRoute extends React.Component {
                         <option value="Jess">Jess</option>
                         <option value="Abi">Abi</option>
                       </select>
-                      {this.state.questions.map(question => question.votingOpen === true) ?
-                        <button>Submit</button>
-                        :
-                        <p>Voting is now closed.</p>
-                      }
+                      <button>Submit</button>
                     </form>
                     }
                     {question.alreadyVoted.includes(Auth.getPayload().sub) && <p>Thanks for voting!</p> }
