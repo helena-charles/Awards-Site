@@ -59,24 +59,36 @@ class Results extends React.Component {
     };
     return (
       <section>
-        <h1 className="title">And the winner is...</h1>
+        <div className="background"></div>
+
+
+        <h1>And the winner is...</h1>
 
         <ul className="columns is-multiline">
           {this.state.questions.map((question, i) =>
             <li key={i} className="column is-one-third">
               <div>
-                <div className="card">
-                  <div className="card-content">
-                    <h1 className="title is-4">Title: {question.question}</h1>
-                    <h1 className="title is-4">Winner: {this.state.winner}</h1>
-                    <img src={mates[question.votes[0]]} />
-                    <button onClick={() => this.handleWin(question.votes)}> {this.state.winner} </button>
+                <div id="f1_container">
+                  <div id="f1_card" className="shadow">
+                    <div className="front face">
+                      <div className="card winner-card">
+                        <div className="card-content">
+                          <h1 className="title is-4"> {question.question}</h1>
+                          <img className="award" src="../assets/images/awards-ga.gif" />
+                          <button onClick={() => this.handleWin(question.votes)}> {this.state.winner} </button>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="back face center">
+                      <img className="winnner-image" src={mates[question.votes[0]]} />
+                    </div>
                   </div>
                 </div>
               </div>
             </li>
           )}
         </ul>
+
       </section>
     );
   }
