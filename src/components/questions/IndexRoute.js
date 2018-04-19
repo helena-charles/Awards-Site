@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import { Redirect } from 'react-router-dom';
 import User from '../../lib/User';
 import Auth from '../../lib/Auth';
 
@@ -9,18 +10,42 @@ class IndexRoute extends React.Component {
   state = {
     questions: [],
     moderated: true,
-    votes: {}
+    votes: {},
+    votingOpen: null
   }
+
+  intervalInstance = null;
 
   getQuestions = () => {
     axios.get('/api/questions')
       .then(res => this.setState({ questions: res.data }));
   }
 
+  checkVotingStatus() {
+    axios.get('/voting/voting-status')
+      .then(response => response.data)
+      .then(({votingOpen}) => {
+        if(votingOpen === false) {
+          this.setState({
+            votingOpen: false
+          });
+        }
+      });
+  }
+
   componentDidMount() {
     this.getQuestions();
 
     if (Auth.getPayload()) this.setState({ admin: User.getUser().admin });
+
+    this.intervalInstance = setInterval(() => {
+      this.checkVotingStatus();
+    }, 2000);
+
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.intervalInstance);
   }
 
   handleVote = (e) => {
@@ -49,10 +74,19 @@ class IndexRoute extends React.Component {
       .then(() => this.getQuestions());
   }
 
+  handleCloseVote = () => {
+    axios.post('/voting',{
+      votingOpen: false
+    });
+  }
+
 
   render() {
     const moderated = this.state.questions.filter(question => question.moderated);
     const unmoderated = this.state.questions.filter(question => !question.moderated);
+    if (this.state.votingOpen === false) {
+      return (<Redirect to="/results"/>);
+    }
     return (
       <section>
 
@@ -80,7 +114,11 @@ class IndexRoute extends React.Component {
                         <option value="Jess">Jess</option>
                         <option value="Abi">Abi</option>
                       </select>
-                      <button>Submit</button>
+                      {this.state.questions.map(question => question.votingOpen === true) ?
+                        <button>Submit</button>
+                        :
+                        <p>Voting is now closed.</p>
+                      }
                     </form>
                     }
                     {question.alreadyVoted.includes(Auth.getPayload().sub) && <p>Thanks for voting!</p> }
@@ -110,6 +148,7 @@ class IndexRoute extends React.Component {
               </li>
             )}
           </ul>
+          <button onClick={this.handleCloseVote}>Close voting</button>
         </div>
         }
       </section>
