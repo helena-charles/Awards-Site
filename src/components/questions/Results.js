@@ -115,7 +115,7 @@ class Results extends React.Component {
             </ul>
           </div>
           :
-          <p>This page is not open yet</p>
+          <p>This page is not open yet, yes we know this isn't styled. We did our best, okay?</p>
         }
 
       </section>
