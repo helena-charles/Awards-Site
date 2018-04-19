@@ -213,9 +213,11 @@ form {
   transform-style: preserve-3d;
   transition: all 1.0s linear;
 }
-#f1_container:hover #f1_card {
+
+.flipped {
   transform: rotateY(180deg);
 }
+
 .face {
   position: absolute;
   width: 100%;

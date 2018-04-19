@@ -15,17 +15,12 @@ class Results extends React.Component {
       .then(res => this.setState({ questions: res.data }));
   }
 
-  handleQuestion = (e) => {
-    console.log(e.target.value);
-  }
-
-
-  handleWin = (question) => {
+  handleWin = (currentQuestion) => {
     const counts = {};
     let mostFrequent = '';
-    for (let i = 0, length = question.votes.length; i < length; i++){
-      for (let j = 0, length = question.votes[i].length; j < length; j++){
-        const name = question.votes[j];
+    for (let i = 0, length = currentQuestion.votes.length; i < length; i++){
+      for (let j = 0, length = currentQuestion.votes[i].length; j < length; j++){
+        const name = currentQuestion.votes[j];
         if(!counts[name]){
           counts[name] = 1;    //set count[name] value to 1
         } else{                  //if exists
@@ -34,10 +29,17 @@ class Results extends React.Component {
         mostFrequent = Object.keys(counts).reduce((a, b) => counts[a] > counts[b] ? a : b);
       }
     }
-    axios.post(`/api/questions/${question._id}/winner`, { winner: mostFrequent })
+    axios.post(`/api/questions/${currentQuestion._id}/winner`, { winner: mostFrequent })
       .then(() => {
         axios.get('/api/questions')
-          .then(res => this.setState({ questions: res.data }, () => console.log(this.state)));
+          .then(res => this.setState({ questions: res.data }))
+          .then(() => {
+            const updatedQuestion = { ...currentQuestion, flipped: true };
+            const index = this.state.questions.findIndex(question => question._id === currentQuestion._id);
+
+            const updatedQuestions = [ ...this.state.questions.slice(0, index), updatedQuestion, ...this.state.questions.slice(index + 1)];
+            this.setState({ questions: updatedQuestions });
+          });
       });
   }
 
@@ -74,19 +76,19 @@ class Results extends React.Component {
           {this.state.questions.map((question, i) =>
             <li key={i} className="column is-one-third">
               <div>
-                <div id="f1_container">
-                  <div id="f1_card" className="shadow">
+                <div id="f1_container" className={question.flipped ? 'flipped shadow': 'shadow'}>
+                  <div id="f1_card" className={question.flipped ? 'flipped shadow': 'shadow'}>
                     <div className="front face">
                       <div className="card winner-card">
                         <div className="card-content">
                           <h1 className="title is-4"> {question.question}</h1>
                           <img className="award" src="../assets/images/awards-ga.gif" />
-                          <button onClick={() => this.handleWin(question.votes)}> {this.state.winner} </button>
+                          <button onClick={() => this.handleWin(question)}>Show Winner!</button>
                         </div>
                       </div>
                     </div>
                     <div className="back face center">
-                      <img className="winnner-image" src={mates[question.votes[0]]} />
+                      <img className="winnner-image" src={mates[question.winner]} />
                     </div>
                   </div>
                 </div>
