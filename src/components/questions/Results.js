@@ -20,13 +20,12 @@ class Results extends React.Component {
   }
 
 
-  handleWin = (array) => {
-    console.log(this.state);
+  handleWin = (question) => {
     const counts = {};
     let mostFrequent = '';
-    for (let i = 0, length = array.length; i < length; i++){
-      for (let j = 0, length = array[i].length; j < length; j++){
-        const name = array[j];
+    for (let i = 0, length = question.votes.length; i < length; i++){
+      for (let j = 0, length = question.votes[i].length; j < length; j++){
+        const name = question.votes[j];
         if(!counts[name]){
           counts[name] = 1;    //set count[name] value to 1
         } else{                  //if exists
@@ -35,8 +34,15 @@ class Results extends React.Component {
         mostFrequent = Object.keys(counts).reduce((a, b) => counts[a] > counts[b] ? a : b);
       }
     }
-    this.setState({ winner: mostFrequent });
+    axios.post(`/api/questions/${question._id}/winner`, { winner: mostFrequent })
+      .then(() => {
+        axios.get('/api/questions')
+          .then(res => this.setState({ questions: res.data }, () => console.log(this.state)));
+      });
   }
+
+
+
 
   render() {
     const mates = {

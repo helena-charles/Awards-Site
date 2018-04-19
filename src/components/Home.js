@@ -58,7 +58,7 @@ class Home extends React.Component {
           {Auth.isAuthenticated() ?
             <form onSubmit={this.handleSubmit}>
               <div className="field">
-                <input value={this.state.question} onChange={this.handleChange} type="text" placeholder="Enter your quesiton here..." />
+                <input value={this.state.question} onChange={this.handleChange} type="text" placeholder="Enter your question here..." />
 
                 {this.state.submitted ?
                   <button className="submittedconfirmation"> Thanks!</button>
