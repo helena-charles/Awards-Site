@@ -12,7 +12,10 @@ class Results extends React.Component {
 
   componentDidMount() {
     axios.get('/api/questions')
-      .then(res => this.setState({ questions: res.data }));
+      .then(res => {
+        res.data = res.data.filter(question => question.moderated);
+        this.setState({ questions: res.data });
+      });
   }
 
   handleWin = (currentQuestion) => {
