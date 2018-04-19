@@ -66,9 +66,9 @@ class Results extends React.Component {
   render() {
     const mates = {
       'Reena': '../assets/images/Reena.jpg',
-      'Tom': '../assets/images/thomas.jpg',
+      'Tom': '../assets/images/tom.jpg',
       'George': '../assets/images/george.jpg',
-      'Jess': '../assets/images/Jessica.jpg',
+      'Jess': '../assets/images/jess.jpg',
       'Katie': '../assets/images/Katie.jpg',
       'Aimee': '../assets/images/Aimee.jpg',
       'Fabian': '../assets/images/Fabian.jpg',
