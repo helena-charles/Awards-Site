@@ -119,13 +119,13 @@ class IndexRoute extends React.Component {
                         <option value="Aimee">Aimee</option>
                         <option value="Fabian">Fabian</option>
                         <option value="Sui">Sui</option>
-                        <option value="Nick">Nick</option>
+                        <option value="Mike">Mike</option>
                         <option value="Mark">Mark</option>
-                        <option value="Amir">Aimee</option>
-                        <option value="Paula">Fabian</option>
-                        <option value="Mike">Sui</option>
-                        <option value="Fabienne">Nick</option>
-                      
+                        <option value="Amir">Amir</option>
+                        <option value="Paula">Paula</option>
+                        <option value="Fabienne">Fabienne</option>
+                        <option value="Nick">Nick</option>
+
                       </select>
                       {this.state.questions.map(question => question.votingOpen === true) ?
                         <button>Submit</button>
