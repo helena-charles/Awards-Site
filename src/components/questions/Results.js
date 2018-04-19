@@ -67,14 +67,14 @@ class Results extends React.Component {
 
   render() {
     const mates = {
-      'Reena': '../assets/images/reena.jpg',
+      'Reena': '../assets/images/Reena.jpg',
       'Tom': '../assets/images/thomas.jpg',
       'George': '../assets/images/george.jpg',
-      'Jess': '../assets/images/jess.jpg',
-      'Katie': '../assets/images/katie.jpg',
-      'Aimee': '../assets/images/aimee.jpg',
-      'Fabian': '../assets/images/fabian.jpg',
-      'Abi': '../assets/images/abi.jpg',
+      'Jess': '../assets/images/Jessica.jpg',
+      'Katie': '../assets/images/Katie.jpg',
+      'Aimee': '../assets/images/Aimee.jpg',
+      'Fabian': '../assets/images/Fabian.jpg',
+      'Abi': '../assets/images/Abi.jpg',
       'Sui': '../assets/images/sui.jpg',
       'Nick': '../assets/images/nick.jpg',
       'Mark': '../assets/images/mark.jpg',
