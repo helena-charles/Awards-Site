@@ -27,6 +27,8 @@ class Results extends React.Component {
         res.data = res.data.filter(question => question.moderated);
         this.setState({ questions: res.data });
       });
+
+    this.checkVotingStatus();
   }
 
   handleWin = (currentQuestion) => {
