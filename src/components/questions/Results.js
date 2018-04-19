@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 // import User from '../../lib/User';
+import _ from 'lodash';
 
 
 class Results extends React.Component {
@@ -24,6 +25,7 @@ class Results extends React.Component {
     axios.get('/api/questions')
       .then(res => {
         res.data = res.data.filter(question => question.moderated);
+        res.data = _.orderBy(res.data, [question => question.question.toLowerCase()], ['asc']);
         this.setState({ questions: res.data });
       });
 
@@ -45,12 +47,16 @@ class Results extends React.Component {
     axios.post(`/api/questions/${currentQuestion._id}/winner`, { winner: mostFrequent })
       .then(() => {
         axios.get('/api/questions')
-          .then(res => this.setState({ questions: res.data }))
+          .then(res => {
+            this.setState({ questions: res.data });
+          })
           .then(() => {
             const updatedQuestion = { ...currentQuestion, flipped: true };
             const index = this.state.questions.findIndex(question => question._id === currentQuestion._id);
 
-            const updatedQuestions = [ ...this.state.questions.slice(0, index), updatedQuestion, ...this.state.questions.slice(index + 1)];
+            let updatedQuestions = [ ...this.state.questions.slice(0, index), updatedQuestion, ...this.state.questions.slice(index + 1)];
+            updatedQuestions = updatedQuestions.filter(question => question.moderated);
+            updatedQuestions = _.orderBy(updatedQuestions, [question => question.question.toLowerCase()], ['asc']);
             this.setState({ questions: updatedQuestions });
           });
       });
@@ -63,20 +69,20 @@ class Results extends React.Component {
     const mates = {
       'Reena': '/assets/images/reena.jpg',
       'Tom': '/assets/images/thomas.jpg',
-      'George': '/assets/images/george.png',
-      'Jess': '/assets/images/jess.png',
+      'George': '/assets/images/george.jpg',
+      'Jess': '/assets/images/jess.jpg',
       'Katie': '/assets/images/katie.jpg',
       'Aimee': '/assets/images/aimee.jpg',
       'Fabian': '/assets/images/fabian.jpg',
       'Abi': '/assets/images/abi.jpg',
-      'Sui': '/assets/images/sui.png',
+      'Sui': '/assets/images/sui.jpg',
       'Nick': '/assets/images/nick.jpg',
       'Mark': '/assets/images/mark.jpg',
-      'Mike': '/assets/images/mike.png',
-      'Helena': '/assets/images/helena.png',
-      'Fabienne': '/assets/images/fabienne.png',
+      'Mike': '/assets/images/mike.jpg',
+      'Helena': '/assets/images/helena.jpg',
+      'Fabienne': '/assets/images/fabienne.jpg',
       'Paula': '/assets/images/paula.jpg',
-      'Amir': '/assets/images/amir.png'
+      'Amir': '/assets/images/amir.jpg'
     };
     return (
       <section>

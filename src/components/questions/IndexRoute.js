@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Redirect } from 'react-router-dom';
 import User from '../../lib/User';
 import Auth from '../../lib/Auth';
+import _ from 'lodash';
 
 
 class IndexRoute extends React.Component {
@@ -18,7 +19,10 @@ class IndexRoute extends React.Component {
 
   getQuestions = () => {
     axios.get('/api/questions')
-      .then(res => this.setState({ questions: res.data }));
+      .then(res => {
+        res.data = _.orderBy(res.data, [question => question.question.toLowerCase()], ['asc']);
+        this.setState({ questions: res.data });
+      });
   }
 
   checkVotingStatus() {
