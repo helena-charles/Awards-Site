@@ -5,7 +5,6 @@ const questionSchema = new mongoose.Schema({
   votes: [{ type: String }],
   alreadyVoted: [{ type: mongoose.Schema.ObjectId, ref: 'User' }],
   moderated: { type: Boolean, default: false },
-  votingOpen: { type: Boolean, default: true },
   winner: {type: String}
 });
 

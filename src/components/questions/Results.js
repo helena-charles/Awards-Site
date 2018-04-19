@@ -64,22 +64,22 @@ class Results extends React.Component {
 
   render() {
     const mates = {
-      'Reena': '/assets/images/Reena.jpg',
-      'Tom': '/assets/images/Thomas.jpg',
-      'George': '/assets/images/George.png',
+      'Reena': '/assets/images/reena.jpg',
+      'Tom': '/assets/images/thomas.jpg',
+      'George': '/assets/images/george.png',
       'Jess': '/assets/images/jess.png',
-      'Katie': '/assets/images/Katie.jpg',
-      'Aimee': '/assets/images/Aimee.jpg',
-      'Fabian': '/assets/images/Fabian.jpg',
-      'Abi': '/assets/images/Abi.jpg',
-      'Sui': '/assets/images/Sui.png',
-      'Nick': '/assets/images/.jpg',
-      'Mark': '/assets/images/.jpg',
-      'Mike': '/assets/images/Mike.png',
-      'Helena': '/assets/images/Helena.png',
-      'Fabienne': '/assets/images/Fab.png',
-      'Paula': '/assets/images/Paula.jpg',
-      'Amir': '/assets/images/Amir.png'
+      'Katie': '/assets/images/katie.jpg',
+      'Aimee': '/assets/images/aimee.jpg',
+      'Fabian': '/assets/images/fabian.jpg',
+      'Abi': '/assets/images/abi.jpg',
+      'Sui': '/assets/images/sui.png',
+      'Nick': '/assets/images/nick.jpg',
+      'Mark': '/assets/images/mark.jpg',
+      'Mike': '/assets/images/mike.png',
+      'Helena': '/assets/images/helena.png',
+      'Fabienne': '/assets/images/fabienne.png',
+      'Paula': '/assets/images/paula.jpg',
+      'Amir': '/assets/images/amir.png'
     };
     return (
       <section>

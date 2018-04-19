@@ -9,24 +9,52 @@ mongoose.connect(dbURI, (err, db) => {
 
   Question.create([{
     question: 'Most likely to lose all their money at the casino',
-    moderated: true,
-    votingOpen: true,
-    votes: ['Jess', 'Jess', 'Abi']
+    moderated: true
   },{
     question: 'Best breakdancer',
-    moderated: true,
-    votingOpen: true,
-    votes: ['Abi', 'Helena', 'Abi', 'Helena', 'Katie', 'Abi', 'Jess', 'Abi']
-  },{
-    question: 'Most likely to get married',
-    moderated: false,
-    votingOpen: true,
-    votes: ['Katie', 'Katie', 'Jess', 'Abi', 'Helena', 'Abi', 'Katie']
+    moderated: true
   },{
     question: 'Most likely to quit it all and do something else',
-    moderated: true,
-    votingOpen: true,
-    votes: ['Helena', 'Abi', 'Helena', 'Katie', 'Jess', 'Katie', 'Helena']
+    moderated: true
+  },{
+    question: 'Most likely to go to prison',
+    moderated: true
+  },{
+    question: 'Biggest, dreamiest eyes',
+    moderated: true
+  },{
+    question: 'Biggest Boozer',
+    moderated: true
+  },{
+    question: 'Best Laugh',
+    moderated: true
+  },{
+    question: 'Most likely to be a gold digger',
+    moderated: true
+  },{
+    question: 'Most likely to become a solo drummer after the course',
+    moderated: true
+  },{
+    question: 'Most likely to be the next Mark Zuckerberg',
+    moderated: true
+  },{
+    question: 'Most likely to get drunk and take their dick out',
+    moderated: true
+  },{
+    question: 'Most likely to become a web design master',
+    moderated: true
+  },{
+    question: 'Most likely to be a bitch at stand up',
+    moderated: true
+  },{
+    question: 'Teacher\'s Pet',
+    moderated: true
+  },{
+    question: 'Best Stand Up',
+    moderated: true
+  },{
+    question: 'Most likely to never be on time',
+    moderated: true
   }])
     .then(questions => console.log(`${questions.length} questions created`))
     .catch(err => console.log(err))
