@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import { Redirect } from 'react-router-dom';
 import User from '../../lib/User';
 import Auth from '../../lib/Auth';
 
@@ -9,19 +10,46 @@ class IndexRoute extends React.Component {
   state = {
     questions: [],
     moderated: true,
-    votes: {}
+    votes: {},
+    votingOpen: null
   }
+
+  intervalInstance = null;
 
   getQuestions = () => {
     axios.get('/api/questions')
       .then(res => this.setState({ questions: res.data }));
   }
 
+  checkVotingStatus() {
+    axios.get('/voting/voting-status')
+    .then(response => response.data)
+    .then(({votingOpen}) => {
+      if(votingOpen === false) {
+        this.setState({
+          votingOpen: false
+        });
+      }
+    });
+  }
+
   componentDidMount() {
     this.getQuestions();
 
-    if (Auth.getPayload()) this.setState({ loggedIn: true, admin: User.getUser().admin });
-    else this.setState({ loggedIn: false });
+    if (Auth.getPayload()) {
+      this.setState({ loggedIn: true, admin: User.getUser().admin });
+    } else {
+      this.setState({ loggedIn: false });
+    }
+
+    this.intervalInstance = setInterval(() => {
+      this.checkVotingStatus();
+    }, 2000);
+
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.intervalInstance);
   }
 
   handleVote = (e) => {
@@ -51,15 +79,18 @@ class IndexRoute extends React.Component {
   }
 
   handleCloseVote = () => {
-    const questionsClosed = this.state.questions.map(question => question.votingOpen = false)
-    this.setState({ questions: questionsClosed });
-    console.log(this.state.questions);
+    axios.post(`/voting`,{
+      votingOpen: false,
+    });
   }
 
 
   render() {
     const moderated = this.state.questions.filter(question => question.moderated);
     const unmoderated = this.state.questions.filter(question => !question.moderated);
+    if (this.state.votingOpen === false) {
+      return (<Redirect to="/results"/>);
+    }
     return (
       <section>
 
