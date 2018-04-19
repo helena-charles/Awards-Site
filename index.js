@@ -6,7 +6,6 @@ const router = require('./config/router');
 
 const { dbURI, port } = require('./config/environment');
 
-let nothing = 1;
 let votingOpen = true;
 
 const app = express();
