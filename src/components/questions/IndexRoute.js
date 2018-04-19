@@ -80,7 +80,6 @@ class IndexRoute extends React.Component {
     });
   }
 
-
   render() {
     const moderated = this.state.questions.filter(question => question.moderated);
     const unmoderated = this.state.questions.filter(question => !question.moderated);
@@ -125,7 +124,7 @@ class IndexRoute extends React.Component {
                         <option value="Paula">Fabian</option>
                         <option value="Mike">Sui</option>
                         <option value="Fabienne">Nick</option>
-                      
+
                       </select>
                       {this.state.questions.map(question => question.votingOpen === true) ?
                         <button>Submit</button>

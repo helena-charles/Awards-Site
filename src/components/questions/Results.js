@@ -66,20 +66,20 @@ class Results extends React.Component {
     const mates = {
       'Reena': '/assets/images/reena.jpg',
       'Tom': '/assets/images/thomas.jpg',
-      'George': '/assets/images/george.png',
-      'Jess': '/assets/images/jess.png',
+      'George': '/assets/images/george.jpg',
+      'Jess': '/assets/images/jess.jpg',
       'Katie': '/assets/images/katie.jpg',
       'Aimee': '/assets/images/aimee.jpg',
       'Fabian': '/assets/images/fabian.jpg',
       'Abi': '/assets/images/abi.jpg',
-      'Sui': '/assets/images/sui.png',
+      'Sui': '/assets/images/sui.jpg',
       'Nick': '/assets/images/nick.jpg',
       'Mark': '/assets/images/mark.jpg',
-      'Mike': '/assets/images/mike.png',
-      'Helena': '/assets/images/helena.png',
-      'Fabienne': '/assets/images/fabienne.png',
+      'Mike': '/assets/images/mike.jpg',
+      'Helena': '/assets/images/helena.jpg',
+      'Fabienne': '/assets/images/fabienne.jpg',
       'Paula': '/assets/images/paula.jpg',
-      'Amir': '/assets/images/amir.png'
+      'Amir': '/assets/images/amir.jpg'
     };
     return (
       <section>
