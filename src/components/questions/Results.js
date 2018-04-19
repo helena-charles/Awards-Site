@@ -46,18 +46,16 @@ class Results extends React.Component {
 
     axios.post(`/api/questions/${currentQuestion._id}/winner`, { winner: mostFrequent })
       .then(() => {
-        axios.get('/api/questions')
+        axios.get(`/api/questions/${currentQuestion._id}`)
           .then(res => {
-            this.setState({ questions: res.data });
-          })
-          .then(() => {
-            const updatedQuestion = { ...currentQuestion, flipped: true };
-            const index = this.state.questions.findIndex(question => question._id === currentQuestion._id);
+            const updatedQuestion = { ...res.data, flipped: true };
+            const index = this.state.questions.findIndex(question => question._id === res.data._id);
 
             let updatedQuestions = [ ...this.state.questions.slice(0, index), updatedQuestion, ...this.state.questions.slice(index + 1)];
             updatedQuestions = updatedQuestions.filter(question => question.moderated);
             updatedQuestions = _.orderBy(updatedQuestions, [question => question.question.toLowerCase()], ['asc']);
-            this.setState({ questions: updatedQuestions });
+            this.setState({ questions: updatedQuestions }, () => {
+            });
           });
       });
   }
