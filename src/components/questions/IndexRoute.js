@@ -23,14 +23,14 @@ class IndexRoute extends React.Component {
 
   checkVotingStatus() {
     axios.get('/voting/voting-status')
-    .then(response => response.data)
-    .then(({votingOpen}) => {
-      if(votingOpen === false) {
-        this.setState({
-          votingOpen: false
-        });
-      }
-    });
+      .then(response => response.data)
+      .then(({votingOpen}) => {
+        if(votingOpen === false) {
+          this.setState({
+            votingOpen: false
+          });
+        }
+      });
   }
 
   componentDidMount() {
@@ -79,8 +79,8 @@ class IndexRoute extends React.Component {
   }
 
   handleCloseVote = () => {
-    axios.post(`/voting`,{
-      votingOpen: false,
+    axios.post('/voting',{
+      votingOpen: false
     });
   }
 

@@ -7,12 +7,25 @@ class Results extends React.Component {
 
   state = {
     questions: [],
-    winner: ''
+    winner: '',
+    votingOpen: false
+  }
+
+  checkVotingStatus() {
+    axios.get('/voting/voting-status')
+      .then(response => response.data)
+      .then(({votingOpen}) => {
+        this.setState({
+          votingOpen
+        });
+      });
   }
 
   componentDidMount() {
     axios.get('/api/questions')
       .then(res => this.setState({ questions: res.data }));
+
+    this.checkVotingStatus();
   }
 
   handleQuestion = (e) => {
@@ -65,35 +78,40 @@ class Results extends React.Component {
     };
     return (
       <section>
-        <div className="background"></div>
+        {!this.state.votingOpen ?
+          <div>
+            <div className="background"></div>
 
+            <h1>And the winner is...</h1>
 
-        <h1>And the winner is...</h1>
-
-        <ul className="columns is-multiline">
-          {this.state.questions.map((question, i) =>
-            <li key={i} className="column is-one-third">
-              <div>
-                <div id="f1_container">
-                  <div id="f1_card" className="shadow">
-                    <div className="front face">
-                      <div className="card winner-card">
-                        <div className="card-content">
-                          <h1 className="title is-4"> {question.question}</h1>
-                          <img className="award" src="../assets/images/awards-ga.gif" />
-                          <button onClick={() => this.handleWin(question.votes)}> {this.state.winner} </button>
+            <ul className="columns is-multiline">
+              {this.state.questions.map((question, i) =>
+                <li key={i} className="column is-one-third">
+                  <div>
+                    <div id="f1_container">
+                      <div id="f1_card" className="shadow">
+                        <div className="front face">
+                          <div className="card winner-card">
+                            <div className="card-content">
+                              <h1 className="title is-4"> {question.question}</h1>
+                              <img className="award" src="../assets/images/awards-ga.gif" />
+                              <button onClick={() => this.handleWin(question.votes)}> {this.state.winner} </button>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="back face center">
+                          <img className="winnner-image" src={mates[question.votes[0]]} />
                         </div>
                       </div>
                     </div>
-                    <div className="back face center">
-                      <img className="winnner-image" src={mates[question.votes[0]]} />
-                    </div>
                   </div>
-                </div>
-              </div>
-            </li>
-          )}
-        </ul>
+                </li>
+              )}
+            </ul>
+          </div>
+          :
+          <p>This page is not open yet</p>
+        }
 
       </section>
     );
