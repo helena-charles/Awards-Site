@@ -32,9 +32,6 @@ mongoose.connect(dbURI, (err, db) => {
     question: 'Most likely to be a gold digger',
     moderated: true
   },{
-    question: 'Most likely to become a solo drummer after the course',
-    moderated: true
-  },{
     question: 'Most likely to be the next Mark Zuckerberg',
     moderated: true
   },{
@@ -50,7 +47,7 @@ mongoose.connect(dbURI, (err, db) => {
     question: 'Teacher\'s Pet',
     moderated: true
   },{
-    question: 'Best Stand Up',
+    question: 'Best Stand Up speaker',
     moderated: true
   },{
     question: 'Most likely to never be on time',
