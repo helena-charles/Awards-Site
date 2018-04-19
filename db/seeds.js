@@ -62,26 +62,26 @@ mongoose.connect(dbURI, (err, db) => {
       {
         username: 'Helena',
         email: 'helena@helena.com',
-        password: 'password',
-        passwordConfirmation: 'password',
+        password: 'dancehallmami',
+        passwordConfirmation: 'dancehallmami',
         admin: true
       },{
         username: 'Abi',
         email: 'abi@abi.com',
-        password: 'password',
-        passwordConfirmation: 'password',
+        password: 'theonlygayinthevillage',
+        passwordConfirmation: 'theonlygayinthevillage',
         admin: true
       },{
         username: 'Jess',
         email: 'jess@jess.com',
-        password: 'password',
-        passwordConfirmation: 'password',
+        password: 'shesacoldheartedsnake',
+        passwordConfirmation: 'shesacoldheartedsnake',
         admin: true
       },{
         username: 'Katie',
         email: 'katie@katie.com',
-        password: 'password',
-        passwordConfirmation: 'password',
+        password: 'documentaryfreak',
+        passwordConfirmation: 'documentaryfreak',
         admin: true
       }])
     )
