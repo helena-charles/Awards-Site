@@ -27,7 +27,7 @@ app.get('/voting/voting-status', (req, res) => {
   res.send({votingOpen});
 });
 
-// app.get('/*', (req, res) => res.sendFile(`${__dirname}/public/index.html`));
+app.get('/*', (req, res) => res.sendFile(`${__dirname}/public/index.html`));
 
 app.use((err, req,res,next) => {
 

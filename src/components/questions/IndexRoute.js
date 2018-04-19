@@ -23,24 +23,20 @@ class IndexRoute extends React.Component {
 
   checkVotingStatus() {
     axios.get('/voting/voting-status')
-    .then(response => response.data)
-    .then(({votingOpen}) => {
-      if(votingOpen === false) {
-        this.setState({
-          votingOpen: false
-        });
-      }
-    });
+      .then(response => response.data)
+      .then(({votingOpen}) => {
+        if(votingOpen === false) {
+          this.setState({
+            votingOpen: false
+          });
+        }
+      });
   }
 
   componentDidMount() {
     this.getQuestions();
 
-    if (Auth.getPayload()) {
-      this.setState({ loggedIn: true, admin: User.getUser().admin });
-    } else {
-      this.setState({ loggedIn: false });
-    }
+    if (Auth.getPayload()) this.setState({ admin: User.getUser().admin });
 
     this.intervalInstance = setInterval(() => {
       this.checkVotingStatus();
@@ -79,8 +75,8 @@ class IndexRoute extends React.Component {
   }
 
   handleCloseVote = () => {
-    axios.post(`/voting`,{
-      votingOpen: false,
+    axios.post('/voting',{
+      votingOpen: false
     });
   }
 
@@ -110,7 +106,7 @@ class IndexRoute extends React.Component {
                 <div className="card">
                   <div className="card-content">
                     <h1 className="title is-4">{question.question}</h1>
-                    {this.state.loggedIn && !question.alreadyVoted.includes(Auth.getPayload().sub) && <form onSubmit={(e) => this.handleSubmit(e, question)}>
+                    {Auth.isAuthenticated() && !question.alreadyVoted.includes(Auth.getPayload().sub) && <form onSubmit={(e) => this.handleSubmit(e, question)}>
                       <select name={question._id} onChange={this.handleVote}>
                         <option value=""></option>
                         <option value="Helena">Helena</option>
@@ -145,7 +141,7 @@ class IndexRoute extends React.Component {
             </li>
           )}
         </ul>
-        {this.state.admin && this.state.loggedIn &&
+        {this.state.admin && Auth.isAuthenticated() &&
         <div>
           <h2>unmoderated</h2>
           <ul className="columns is-multiline">

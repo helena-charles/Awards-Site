@@ -9,13 +9,13 @@ class Register extends React.Component {
 
   handleChange = (e) => {
     const { name, value } = e.target;
-    this.setState({ [name]: value }, () => console.log(this.state));
+    this.setState({ [name]: value });
   }
   handleSubmit = (e) => {
     e.preventDefault();
     axios.post('/api/register', this.state)
       .then(res => Auth.setToken(res.data.token))
-      .then(() => this.props.history.push('/questions'));
+      .then(() => this.props.history.push('/'));
   }
   render() {
     return (
