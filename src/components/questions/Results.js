@@ -81,7 +81,7 @@ class Results extends React.Component {
                         <div className="card-content">
                           <h1 className="title is-4"> {question.question}</h1>
                           <img className="award" src="../assets/images/awards-ga.gif" />
-                          <button onClick={() => this.handleWin(question.votes)}> {this.state.winner} </button>
+                          <button onClick={() => this.handleWin(question.winner)}> {this.state.winner} </button>
                         </div>
                       </div>
                     </div>
