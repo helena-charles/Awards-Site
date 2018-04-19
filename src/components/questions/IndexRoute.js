@@ -137,7 +137,7 @@ class IndexRoute extends React.Component {
                       }
                     </form>
                     }
-                    {question.alreadyVoted.includes(Auth.getPayload().sub) && <p>Thanks for voting!</p> }
+                    {question.alreadyVoted.includes(Auth.getPayload().sub) && <p className="subtext">Thanks for voting!</p> }
                   </div>
                 </div>
               </div>
@@ -146,7 +146,7 @@ class IndexRoute extends React.Component {
         </ul>
         {this.state.admin && Auth.isAuthenticated() &&
         <div>
-          <h2>unmoderated</h2>
+          <h2>Unmoderated</h2>
           <ul className="columns is-multiline">
             {unmoderated.map((question, i) =>
               <li key={i} className="column is-one-third">
