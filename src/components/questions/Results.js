@@ -7,7 +7,6 @@ class Results extends React.Component {
 
   state = {
     questions: [],
-    winner: '',
     votingOpen: false
   }
 
@@ -34,17 +33,15 @@ class Results extends React.Component {
   handleWin = (currentQuestion) => {
     const counts = {};
     let mostFrequent = '';
-    for (let i = 0, length = currentQuestion.votes.length; i < length; i++){
-      for (let j = 0, length = currentQuestion.votes[i].length; j < length; j++){
-        const name = currentQuestion.votes[j];
-        if(!counts[name]){
-          counts[name] = 1;    //set count[name] value to 1
-        } else{                  //if exists
-          counts[name] = counts[name] + 1; //increment existing value
-        }
-        mostFrequent = Object.keys(counts).reduce((a, b) => counts[a] > counts[b] ? a : b);
+    currentQuestion.votes.forEach(name => {
+      if(!counts[name]){
+        counts[name] = 1;    //set count[name] value to 1
+      } else {                  //if exists
+        counts[name] = counts[name] + 1; //increment existing value
       }
-    }
+    });
+    mostFrequent = Object.keys(counts).reduce((a, b) => counts[a] > counts[b] ? a : b);
+
     axios.post(`/api/questions/${currentQuestion._id}/winner`, { winner: mostFrequent })
       .then(() => {
         axios.get('/api/questions')
