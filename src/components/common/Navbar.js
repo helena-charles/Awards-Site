@@ -7,8 +7,7 @@ import User from '../../lib/User';
 class Navbar extends React.Component {
 
   state = {
-    navIsOpen: false,
-    username: ''
+    navIsOpen: false
   }
 
   handleToggle = () => {
@@ -47,14 +46,13 @@ class Navbar extends React.Component {
         </div>
         <div className={`navbar-menu ${this.state.navIsOpen ? 'is-active' : ''}`}>
           <div className="navbar-end">
-            <Link className="navbar-item"
-              to="/questions">Questions</Link>
-
+            {!this.state.votingOpen && <Link className="navbar-item"
+              to="/questions">Questions</Link>}
+            {this.state.votingOpen &&   <Link className="navbar-item"
+              to="/results">Results</Link>}
             {Auth.isAuthenticated() && <a className="navbar-item" onClick={this.handleLogout}>Logout</a>}
             {!Auth.isAuthenticated() && <Link className="navbar-item" to="/login">Login</Link>}
             {!Auth.isAuthenticated() &&  <Link className="navbar-item" to="/register">Register</Link>}
-            {Auth.isAuthenticated() && <Link className="navbar-item" to={'/'}>Hi, {this.state.username}</Link>}
-
           </div>
         </div>
       </nav>

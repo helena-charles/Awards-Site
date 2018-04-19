@@ -6,7 +6,6 @@ const router = require('./config/router');
 
 const { dbURI, port } = require('./config/environment');
 
-let nothing = 1;
 let votingOpen = true;
 
 const app = express();
@@ -28,7 +27,7 @@ app.get('/voting/voting-status', (req, res) => {
   res.send({votingOpen});
 });
 
-// app.get('/*', (req, res) => res.sendFile(`${__dirname}/public/index.html`));
+app.get('/*', (req, res) => res.sendFile(`${__dirname}/public/index.html`));
 
 app.use((err, req,res,next) => {
 
