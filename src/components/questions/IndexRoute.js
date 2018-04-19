@@ -108,23 +108,22 @@ class IndexRoute extends React.Component {
                     {Auth.isAuthenticated() && !question.alreadyVoted.includes(Auth.getPayload().sub) && <form onSubmit={(e) => this.handleSubmit(e, question)}>
                       <select name={question._id} onChange={this.handleVote}>
                         <option value=""></option>
-                        <option value="Helena">Helena</option>
-                        <option value="Katie">Katie</option>
-                        <option value="Jess">Jess</option>
                         <option value="Abi">Abi</option>
-                        <option value="Reena">Reena</option>
-                        <option value="George">George</option>
-                        <option value="Tom">Tom</option>
                         <option value="Aimee">Aimee</option>
+                        <option value="Amir">Amir</option>
                         <option value="Fabian">Fabian</option>
-                        <option value="Sui">Sui</option>
-                        <option value="Nick">Nick</option>
+                        <option value="Fabienne">Fabienne</option>
+                        <option value="George">George</option>
+                        <option value="Helena">Helena</option>
+                        <option value="Jess">Jess</option>
+                        <option value="Katie">Katie</option>
                         <option value="Mark">Mark</option>
-                        <option value="Amir">Aimee</option>
-                        <option value="Paula">Fabian</option>
-                        <option value="Mike">Sui</option>
-                        <option value="Fabienne">Nick</option>
-
+                        <option value="Mike">Mike</option>
+                        <option value="Nick">Nick</option>
+                        <option value="Paula">Paula</option>
+                        <option value="Reena">Reena</option>
+                        <option value="Sui">Sui</option>
+                        <option value="Tom">Tom</option>
                       </select>
                       {this.state.questions.map(question => question.votingOpen === true) ?
                         <button>Submit</button>
