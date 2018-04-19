@@ -137,7 +137,7 @@ class IndexRoute extends React.Component {
                       }
                     </form>
                     }
-                    {question.alreadyVoted.includes(Auth.getPayload().sub) && <p>Thanks for voting!</p> }
+                    {question.alreadyVoted.includes(Auth.getPayload().sub) && <p className="subtext">Thanks for voting!</p> }
                   </div>
                 </div>
               </div>

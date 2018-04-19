@@ -32,7 +32,7 @@ class Login extends React.Component {
         <form className="form" onSubmit={this.handleSubmit}>
           <div className="field">
 
-            <input className="input login-input"
+            <input className="login-input"
               placeholder="Email"
               name="email"
               onChange={this.handleChange}
@@ -40,7 +40,7 @@ class Login extends React.Component {
           </div>
           <div className="field">
             <input
-              className="input login-input"
+              className="login-input"
               placeholder="Password"
               name="password"
               type="password"
