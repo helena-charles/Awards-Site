@@ -52,6 +52,36 @@ mongoose.connect(dbURI, (err, db) => {
   },{
     question: 'Most likely to never be on time',
     moderated: true
+  },{
+    question: 'Biggest Twat',
+    moderated: true
+  },{
+    question: 'Funniest Student',
+    moderated: true
+  },{
+    question: 'Least likely to get drunk',
+    moderated: true
+  },{
+    question: 'Most helpful student',
+    moderated: true
+  },{
+    question: 'Most likely to retire at 40',
+    moderated: true
+  },{
+    question: 'Most likely to suddenly speak French',
+    moderated: true
+  },{
+    question: 'Saltiest student',
+    moderated: true
+  },{
+    question: 'Biggest dog lover',
+    moderated: true
+  },{
+    question: 'Biggest swearer',
+    moderated: true
+  },{
+    question: 'Most likely to work for paws.com',
+    moderated: true
   }])
     .then(questions => console.log(`${questions.length} questions created`))
     .catch(err => console.log(err))
