@@ -2,6 +2,7 @@ const router = require('express').Router();
 const questions = require('../controllers/questions');
 const auth = require('../controllers/auth');
 const secureRoute = require('../lib/secureRoute');
+const users = require('../controllers/user');
 
 router.route('/questions')
   .get(questions.index)
@@ -17,6 +18,9 @@ router.route('/questions/:id/votes')
 
 router.route('/questions/:id/winner')
   .post(questions.createWinner);
+
+router.route('/users/:id')
+  .get(users.show);
 
 router.route('/register')
   .post(auth.register);

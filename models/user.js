@@ -5,7 +5,7 @@ const userSchema = new mongoose.Schema({
   username: { type: String, minLength: 2, uniqueCaseInsensitive: true, required: true },
   email: { type: String, uniqueCaseInsensitive: true, required: true },
   password: { type: String, required: true },
-  admin: false
+  admin: { type: Boolean, default: false }
 });
 
 userSchema.virtual('passwordConfirmation')

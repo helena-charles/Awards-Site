@@ -40,9 +40,12 @@ class IndexRoute extends React.Component {
   componentDidMount() {
     this.getQuestions();
 
-    if (Auth.getPayload()) {
-      if (User.getUser().admin) this.setState({ admin: true }, () => console.log(this.state));
-      else this.setState({ admin: false }, () => console.log(this.state));
+    if (Auth.isAuthenticated()) {
+      axios.get(`/api/users/${Auth.getPayload().sub}`)
+        .then(res => {
+          if (res.data.admin) this.setState({ admin: true });
+          else this.setState({ admin: false });
+        });
     }
 
     this.intervalInstance = setInterval(() => {
