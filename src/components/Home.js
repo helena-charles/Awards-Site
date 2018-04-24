@@ -37,7 +37,7 @@ class Home extends React.Component {
         <div className="homepage-wrapper">
           <h1>Welcome to..</h1>
           <img className="logo" src="../assets/images/ga-logo_gas.png" />
-          <p className="prounced">(prounced GA-ees, you know, like the ESPYs)</p>
+          <p className="prounced">(pronounced GA-ees, you know, like the ESPYs)</p>
           <img className="award" src="../assets/images/awards-ga.gif" />
           <div className="homepage-copy">
 

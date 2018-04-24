@@ -2,23 +2,12 @@ import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 
 import Auth from '../../lib/Auth';
-import axios from 'axios';
+// import axios from 'axios';
 
 class Navbar extends React.Component {
 
   state = {
-    navIsOpen: false,
-    votingOpen: null
-  }
-
-  checkVotingStatus() {
-    axios.get('/voting/voting-status')
-      .then(response => response.data)
-      .then(({votingOpen}) => {
-        this.setState({
-          votingOpen
-        });
-      });
+    navIsOpen: false
   }
 
   handleToggle = () => {
@@ -32,7 +21,6 @@ class Navbar extends React.Component {
 
   componentWillUpdate() {
     this.state.navIsOpen && this.setState({ navIsOpen: false });
-    this.checkVotingStatus();
   }
 
   render() {
@@ -54,10 +42,10 @@ class Navbar extends React.Component {
         </div>
         <div className={`navbar-menu ${this.state.navIsOpen ? 'is-active' : ''}`}>
           <div className="navbar-end">
-            {this.state.votingOpen ? <Link className="navbar-item"
+            <Link className="navbar-item"
               to="/questions">Questions</Link>
-              : <Link className="navbar-item"
-                to="/results">Results</Link>}
+            <Link className="navbar-item"
+              to="/results">Results</Link>
             {Auth.isAuthenticated() && <a className="navbar-item" onClick={this.handleLogout}>Logout</a>}
             {!Auth.isAuthenticated() && <Link className="navbar-item" to="/login">Login</Link>}
             {!Auth.isAuthenticated() &&  <Link className="navbar-item" to="/register">Register</Link>}
