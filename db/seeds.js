@@ -111,28 +111,10 @@ mongoose.connect(dbURI, (err, db) => {
     .catch(err => console.log(err))
     .then(() => User.create([
       {
-        username: 'Helena',
-        email: 'helena@helena.com',
-        password: 'dancehallmami',
-        passwordConfirmation: 'dancehallmami',
-        admin: true
-      },{
-        username: 'Abi',
-        email: 'abi@abi.com',
-        password: 'theonlygayinthevillage',
-        passwordConfirmation: 'theonlygayinthevillage',
-        admin: true
-      },{
-        username: 'Jess',
-        email: 'jess@jess.com',
-        password: 'shesacoldheartedsnake',
-        passwordConfirmation: 'shesacoldheartedsnake',
-        admin: true
-      },{
-        username: 'Katie',
-        email: 'katie@katie.com',
-        password: 'documentaryfreak',
-        passwordConfirmation: 'documentaryfreak',
+        username: 'Admin',
+        email: 'admin@admin.com',
+        password: 'adminpassword',
+        passwordConfirmation: 'adminpassword',
         admin: true
       }])
     )
