@@ -52,7 +52,7 @@ class Home extends React.Component {
               <li className="examples">&apos;Best style&apos;</li>
             </ul>
             <p className="lastp">
-            Have at it and don&apos;t be dicks!
+            Have fun!
             </p>
           </div>
           {Auth.isAuthenticated() ?
