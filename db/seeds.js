@@ -17,7 +17,7 @@ mongoose.connect(dbURI, (err, db) => {
     question: 'Most likely to quit it all and do something else',
     moderated: true
   },{
-    question: 'Most likely to go to prison',
+    question: 'Most likely to be incarcerated for a DDOS attack',
     moderated: true
   },{
     question: 'Biggest, dreamiest eyes',
@@ -74,13 +74,37 @@ mongoose.connect(dbURI, (err, db) => {
     question: 'Saltiest student',
     moderated: true
   },{
-    question: 'Biggest dog lover',
-    moderated: true
-  },{
     question: 'Biggest swearer',
     moderated: true
   },{
-    question: 'Most likely to work for paws.com',
+    question: 'Best dressed',
+    moderated: true
+  },{
+    question: 'Least hair',
+    moderated: true
+  },{
+    question: 'Most hair',
+    moderated: true
+  },{
+    question: 'Most dramatic makeover throughout the course',
+    moderated: true
+  },{
+    question: 'Most likely to correct you on their name pronunciation',
+    moderated: true
+  },{
+    question: 'Most likely to say "cool" at the beginning of their stand up speech',
+    moderated: true
+  },{
+    question: 'Most likely to tell you their life story',
+    moderated: true
+  },{
+    question: 'Shortest stand up',
+    moderated: true
+  },{
+    question: 'Longest stand up',
+    moderated: true
+  },{
+    question: 'Best dog owner',
     moderated: true
   }])
     .then(questions => console.log(`${questions.length} questions created`))

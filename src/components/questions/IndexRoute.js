@@ -1,7 +1,6 @@
 import React from 'react';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
-import User from '../../lib/User';
 import Auth from '../../lib/Auth';
 import _ from 'lodash';
 
